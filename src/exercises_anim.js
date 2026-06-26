@@ -95,4 +95,4 @@ export function exerciseAnim(id) {
   return cache[key];
 }
 export function hasAnim(id) { return !!MAP[id]; }
-              
+  
