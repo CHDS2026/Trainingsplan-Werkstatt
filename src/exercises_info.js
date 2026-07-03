@@ -1,5 +1,6 @@
 // Kurz-Ausführungshinweise je Übung (Standard-Technikwissen). complex=Video empfohlen.
 export const EXERCISE_INFO = {
+  "ringdips": { t: "Wie Dips, aber an Ringen — die instabilen Ringe fordern viel mehr Rumpf- und Schulterkontrolle. Ringe eng am Körper, kontrolliert tief. Fehler: Ringe wackeln/spreizen, zu tief bei Schulterproblemen.", c: true },
   "bench_lh": { t: "Schulterblätter zusammenziehen, Stange zur unteren Brust senken, Ellbogen ~45°. Fehler: Ellbogen zu weit abspreizen, Hintern hebt ab.", c: false },
   "bench_kh": { t: "Hanteln über der Brust, kontrolliert tief für mehr Dehnung, dann zusammendrücken. Fehler: zu tiefes Durchhängen ohne Kontrolle.", c: false },
   "chestpress_m": { t: "Aufrecht sitzen, Griffe auf Brusthöhe, gleichmäßig wegdrücken. Fehler: Schultern nach vorne ziehen statt stabil halten.", c: false },

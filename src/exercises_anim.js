@@ -84,7 +84,7 @@ const MAP = {
   hipthrust:"hipthrust",
   legext:"legext",
   lunges:"lunge", bulgarian:"lunge", stepup:"lunge",
-  dips:"dips",
+  dips:"dips", ringdips:"dips",
 };
 
 const cache = {};
@@ -95,4 +95,3 @@ export function exerciseAnim(id) {
   return cache[key];
 }
 export function hasAnim(id) { return !!MAP[id]; }
-  
