@@ -563,7 +563,7 @@ function NumPick({value,onChange,kind,placeholder}){
 
 // Version der fest hinterlegten Pläne. Bei jeder Planänderung im Code hochzählen —
 // dann übernimmt die App die Änderung beim nächsten Start automatisch.
-const PLAN_VERSION = 16;
+const PLAN_VERSION = 17;
 
 // Version des hinterlegten Ernährungsplans (hochzählen -> Update greift automatisch)
 const NUTRI_VERSION = 1;
@@ -961,36 +961,37 @@ export default function App(){
     const cdHang=()=>[...cd(),{id:"Dead Hangs – 3× max. Halten (Dekompression)",min:3}];
     // varB = Assistenz-Variante an Tag D (wechselt wöchentlich)
     const days4=(r,pu,dip,dl,varB)=>[
-      {id:"dane-a",name:"Tag A · Push 1 · Bench & Planche",warmup:wu(),main:[
+      {id:"dane-a",name:"Tag A · Push · Bankdrücken & Planche",warmup:wu(),main:[
         {id:"bench_lh",sets:r.length,reps:3,kg:145,ramp:r},
         {id:"pppu",sets:dl?2:3,reps:9,kg:0},
         {id:"planche",sets:dl?3:5,reps:1,kg:0}],cooldown:cd()},
-      {id:"dane-b",name:"Tag B · Legs 1 · Squat & Handstand",warmup:wu(),main:[
+      {id:"dane-b",name:"Tag B · Legs · Kniebeuge & Handstand",warmup:wu(),main:[
         {id:"squat_lh",sets:r.length,reps:3,kg:125,ramp:r},
         {id:"zombiesquat",sets:dl?2:3,reps:8,kg:50},
         {id:"handstand",sets:1,reps:1,kg:0}],cooldown:cdHang()},
-      {id:"dane-c",name:"Tag C · Pull 1 · Pull-Ups & Levers",warmup:wu(),main:[
-        {id:"pullup",sets:pu.length,reps:3,kg:0,rampAbs:pu},
-        {id:"row_lh",sets:dl?2:3,reps:8,kg:80},
-        {id:"frontlever",sets:4,reps:8,kg:0}],cooldown:cd()},
-      {id:"dane-d",name:"Tag D · Push 2 · OHP & Planche",warmup:wu(),main:[
+      {id:"dane-d",name:"Tag C · Push · OHP & Planche",warmup:wu(),main:[
         {id:"ohp_lh",sets:r.length,reps:3,kg:72.5,ramp:r},
         varB?{id:"ringbulg",sets:dl?2:3,reps:9,kg:0}:{id:"ringskull",sets:dl?2:3,reps:9,kg:0},
         {id:"planche",sets:dl?3:5,reps:1,kg:0}],cooldown:cd()},
-      {id:"dane-e",name:"Tag E · Legs 2 · Deadlift & Handstand",warmup:wu(),main:[
-        {id:"deadlift",sets:r.length,reps:3,kg:170,ramp:r},
-        {id:"zombiesquat",sets:dl?2:3,reps:8,kg:50},
-        {id:"hspu",sets:dl?2:3,reps:5,kg:0}],cooldown:cdHang()},
-      {id:"dane-f",name:"Tag F · Push 3 · Dips & Levers",warmup:wu(),main:[
+      {id:"dane-c",name:"Tag D · Pull · Klimmzüge & Levers",warmup:wu(),main:[
+        {id:"pullup",sets:pu.length,reps:3,kg:0,rampAbs:pu},
+        {id:"row_lh",sets:dl?2:3,reps:8,kg:80},
+        {id:"frontlever",sets:4,reps:8,kg:0}],cooldown:cd()},
+      {id:"dane-f",name:"Tag E · Push · Dips & Levers",warmup:wu(),main:[
         {id:"dips",sets:dip.length,reps:3,kg:0,rampAbs:dip},
         {id:"chinup",sets:dl?2:3,reps:7,kg:0},
         {id:"backlever",sets:4,reps:8,kg:0}],cooldown:cd()},
+      {id:"dane-e",name:"Tag F · Legs · Kreuzheben & Handstand",warmup:wu(),main:[
+        {id:"deadlift",sets:r.length,reps:3,kg:170,ramp:r},
+        {id:"zombiesquat",sets:dl?2:3,reps:8,kg:50},
+        {id:"hspu",sets:dl?2:3,reps:5,kg:0}],cooldown:cdHang()},
       {id:"dane-g",name:"Tag G · Ruhetag",warmup:[],main:[],cooldown:[]},
     ];
     // Wochen 1–3 unverändert (inkl. Deload W3), ab W4 neue Struktur mit wechselnder
     // Assistenz an Tag D; Deload erneut in Woche 12 (Anfang November).
-    const revs=[{fromWeek:3,days:days(DELOAD,true)}];
-    for(let w=4;w<=14;w++){
+    // Neue Struktur greift ab Woche 3 (also ab sofort). Wochen 1–2 bleiben unangetastet.
+    const revs=[];
+    for(let w=3;w<=14;w++){
       const dl=(w===12);
       const varB=(w%2===1);   // wechselt wöchentlich: Skull Crushers / Bulgarian Ring Push-Ups
       revs.push({fromWeek:w,days:days4(dl?RAMP_DL:RAMP, dl?PU_DL:PU, dl?DIP_DL:DIP, dl, varB)});
